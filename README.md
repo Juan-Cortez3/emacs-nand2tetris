@@ -33,3 +33,7 @@ And online course called `nand2tetris` based on this book:
 
 #### TODO
 * Add major mode for `Jack`
+
+
+#### Notes
+There is a requirement in the HDL grammer that the underscores and the characters following them will be ignored in the naming of internal pins
