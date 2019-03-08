@@ -67,7 +67,9 @@ ROM[[:digit:]]*K*\\|\
 PC\\|\
 DFF\\|\
 Screen\\|\
-Keyboard" . font-lock-function-name-face))
+Keyboard\\|\
+CPU\\|\
+Memory" . font-lock-function-name-face))
   "Highlighting expressions for builtin logic gates.")
 
 (defconst hdl-font-lock-keywords-1
