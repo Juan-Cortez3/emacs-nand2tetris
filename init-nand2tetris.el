@@ -1,4 +1,4 @@
-;; init-nand2tetris.el --- A major mode for the nand2tetris projects.	-*- lexical-binding: t -*-
+;; init-nand2tetris.el --- Several major modes for the nand2tetris projects.	-*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 Juan Cortez
 
@@ -25,8 +25,18 @@
 
 ;;; Commentary:
 ;;
-;; This file provides major modes for .hdl .tst ... files which is required
-;; in the projects of course nand2tetris.
+;; Perspective:
+;; This file provides major modes for languages used in the course nand2tetris:
+;;
+;; * .hdl  - Hardware description language
+;; * .tst  - Test script for simulators in the software suite
+;; * .vm   - The intermediate representation used by the VM translator
+;; * .jack - The high level language [TODO]
+;;
+;; Those languages are not meant for the real world but serve as tools to reveal
+;; the computer engineering principles underlying modern computing systems
+;;
+;; Usage:
 ;; Currently, this file provides only basic functionalities:
 ;;
 ;; 1. Syntax highlighting
@@ -38,7 +48,7 @@
 ;;; Code:
 
 ;;
-;; Major mode for tst files
+;; Major mode for hardware description language
 ;;
 (defvar hdl-mode-hook nil)
 
@@ -149,7 +159,7 @@ Memory" . font-lock-function-name-face))
 
 
 ;;
-;; Major mode for tst files
+;; Major mode for test script language
 ;;
 
 (defvar tst-mode-hook nil)
@@ -193,6 +203,57 @@ Memory" . font-lock-function-name-face))
   (setq major-mode 'tst-mode)
   (setq mode-name "TST")
   (run-hooks 'tst-mode-hook))
+
+
+;;
+;; Major mode for the intermediate representation used by the vm translator
+;;
+(defvar vm-mode-hook nil)
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.vm\\'" . vm-mode))
+
+;; Syntax highlighting
+(defconst vm-font-lock-keywords-1
+  (list
+   '("add\\|\
+sub\\|\
+neg\\|\
+eq\\|\
+gt\\|\
+lt\\|\
+and\\|\
+or\\|\
+not" . font-lock-function-name-face))
+  "Highlighting expressions for arithmetic and logical commands.")
+
+(defconst vm-font-lock-keywords-2
+  (append vm-font-lock-keywords-1
+          (list
+           '("push\\|pop" . font-lock-keyword-face)
+           '("argument\\|local\\|static\\|constant\\|this\\|that\\|pointer\\|temp" . font-lock-constant-face)))
+  "Highlighting expressions for memory access commands and constants.")
+
+(defconst vm-font-lock-keywords-3
+  (append vm-font-lock-keywords-2
+          (list
+           '("label\\|goto\\|if-goto\\|function\\|call\\|return" . font-lock-type-face)))
+  "Highlighting expressions for program flow and function calling commands.")
+
+(defvar vm-font-lock-keywords vm-font-lock-keywords-3
+  "Defautl highlighting expressions for HDL mode.")
+
+;; The entry function
+(define-derived-mode vm-mode ()
+  "Major mode for editing .vm files"
+  (interactive)
+  (kill-all-local-variables)
+  (set-syntax-table hdl-mode-syntax-table)
+  (set (make-local-variable 'font-lock-defaults) '(vm-font-lock-keywords))
+  (set (make-local-variable 'indent-line-function) 'hdl-indent-line)
+  (setq major-mode 'vm-mode)
+  (setq mode-name "VM")
+  (run-hooks 'vm-mode-hook))
 
 
 (provide 'init-nand2tetris)
