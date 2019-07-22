@@ -16,9 +16,9 @@ There are other packages or projects which will do the same job and provide more
 #### Screenshot
 1. HDL  
 ![hdl](images/screenshot_hdl.png)
-2. Test script
+2. Test script  
 ![tst](images/screenshot_tst.png)
-3. VM language
+3. VM language  
 ![vm](images/screenshot_vm.png)
 #### Usage
 
