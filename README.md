@@ -14,13 +14,16 @@ Those languages are designed for the Hack platform introduced in the book. They 
 There are other packages or projects which will do the same job and provide more cool features. And I found them hard to integrate in my emacs configuration `.emacs.d` and they only support `.hdl` files. If you just want a simple solution, I believe this is the one you are looking for.
 
 #### Screenshot
-1. HDL
-![hdl](images/hdl_screenshot.png)
-
+1. HDL  
+![hdl](images/screenshot_hdl.png)
+2. Test script
+![tst](images/screenshot_tst.png)
+3. VM language
+![vm](images/screenshot_vm.png)
 #### Usage
 
 1. Put this file in your `.emacs.d` folder.
-2. And add `(require 'init-nand2tetris)` in your `init.el` file
+2. Add `(require 'init-nand2tetris)` in your `init.el` file
 
 *Or add the main content of this file to your `.emacs` file.*
 
@@ -34,7 +37,7 @@ And online course called `nand2tetris` based on this book:
 [https://www.coursera.org/learn/build-a-computer](https://www.coursera.org/learn/build-a-computer)
 
 #### TODO
-* Add major mode for `Jack`
+* Add the major mode for `Jack`
 
 
 #### Notes
