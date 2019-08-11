@@ -20,6 +20,8 @@ There are other packages or projects which will do the same job and provide more
 ![tst](images/screenshot_tst.png)
 3. VM language  
 ![vm](images/screenshot_vm.png)
+4. VM language  
+![vm](images/screenshot_jack.png)
 #### Usage
 
 1. Put this file in your `.emacs.d` folder.
@@ -35,9 +37,6 @@ You can find the online version of this book at the link below:
 
 And online course called `nand2tetris` based on this book:
 [https://www.coursera.org/learn/build-a-computer](https://www.coursera.org/learn/build-a-computer)
-
-#### TODO
-* Add the major mode for `Jack`
 
 
 #### Notes

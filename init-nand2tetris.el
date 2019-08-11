@@ -256,6 +256,65 @@ not" . font-lock-function-name-face))
   (run-hooks 'vm-mode-hook))
 
 
+;;
+;; Major mode for the high level language Jack
+;;
+(defvar jack-mode-hook nil)
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
+
+;; Syntax highlighting
+(defconst jack-font-lock-keywords-1
+  (list
+   '("class\\|\
+constructor\\|\
+method\\|\
+function\\|\
+var\\|\
+static\\|\
+field\\|\
+let\\|\
+do\\|\
+if\\|\
+else\\|\
+while\\|\
+return\\|\
+this" . font-lock-keyword-face))
+  "Highlighting expressions for program components, variable declaration, statements, constant values, object reference")
+
+(defconst jack-font-lock-keywords-2
+  (append jack-font-lock-keywords-1
+          (list
+           '("class[[:blank:]]+\\(\\w+\\)[[:blank:]]+{" 1 font-lock-function-name-face)
+           '("\\(\\w+\\)[[:blank:]]*=[[:blank:]]*" 1 font-lock-variable-name-face)
+           '("int\\|boolean\\|char\\|void" . font-lock-type-face)
+           '("true\\|false\\|null" . font-lock-constant-face)))
+  "Highlighting expressions for memory access commands and constants.")
+
+(defconst jack-font-lock-keywords-3
+  (append jack-font-lock-keywords-2
+          (list
+           '("Math\\|String\\|Array\\|Output\\|Screen\\|Keyboard\\|Memory\\|Sys" . font-lock-function-name-face)
+           '("\\(constructor\\|method\\|function\\)[[:blank:]]+\\(\\w+\\)[[:blank:]]+\\(\\w+\\)[[:blank:]]*(" 3 font-lock-constant-face)))
+  "Highlighting expressions for Jack standard libraries.")
+
+(defvar jack-font-lock-keywords jack-font-lock-keywords-3
+  "Defautl highlighting expressions for HDL mode.")
+
+;; The entry function
+(define-derived-mode jack-mode ()
+  "Major mode for editing .jack files"
+  (interactive)
+  (kill-all-local-variables)
+  (set-syntax-table hdl-mode-syntax-table) ;; use old hdl syntax table
+  (set (make-local-variable 'font-lock-defaults) '(jack-font-lock-keywords))
+  (set (make-local-variable 'indent-line-function) 'hdl-indent-line) ;; use old hdl indent rule
+  (setq major-mode 'jack-mode)
+  (setq mode-name "Jack")
+  (run-hooks 'jack-mode-hook))
+
+
 (provide 'init-nand2tetris)
 
 ;;; init-nand2tetris.el ends here
