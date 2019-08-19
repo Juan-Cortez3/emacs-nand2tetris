@@ -31,7 +31,7 @@
 ;; * .hdl  - Hardware description language
 ;; * .tst  - Test script for simulators in the software suite
 ;; * .vm   - The intermediate representation used by the VM translator
-;; * .jack - The high level language [TODO]
+;; * .jack - The high level language
 ;;
 ;; Those languages are not meant for the real world but serve as tools to reveal
 ;; the computer engineering principles underlying modern computing systems
