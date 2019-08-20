@@ -288,14 +288,14 @@ this" . font-lock-keyword-face))
           (list
            '("class[[:blank:]]+\\(\\w+\\)[[:blank:]]+{" 1 font-lock-function-name-face)
            '("\\(\\w+\\)[[:blank:]]*=[[:blank:]]*" 1 font-lock-variable-name-face)
-           '("int\\|boolean\\|char\\|void" . font-lock-type-face)
+           '("[^a-zA-Z0-9]\\(int\\|boolean\\|char\\|void\\)[^a-zA-Z0-9]" 1 font-lock-type-face)
            '("true\\|false\\|null" . font-lock-constant-face)))
   "Highlighting expressions for memory access commands and constants.")
 
 (defconst jack-font-lock-keywords-3
   (append jack-font-lock-keywords-2
           (list
-           '("Math\\|String\\|Array\\|Output\\|Screen\\|Keyboard\\|Memory\\|Sys" . font-lock-function-name-face)
+           '("[^a-zA-Z0-9]\\(Math\\|String\\|Array\\|Output\\|Screen\\|Keyboard\\|Memory\\|Sys\\)[^a-zA-Z0-9]" 1 font-lock-function-name-face)
            '("\\(constructor\\|method\\|function\\)[[:blank:]]+\\(\\w+\\)[[:blank:]]+\\(\\w+\\)[[:blank:]]*(" 3 font-lock-constant-face)))
   "Highlighting expressions for Jack standard libraries.")
 
